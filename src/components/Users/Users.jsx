@@ -3,6 +3,7 @@ import styles from './users.module.css';
 import userPhoto from '../../assets/images/userPhoto.jpg'
 import preloader from '../../assets/images/preloader.svg'
 import Preloader from "../common/preloader/Preloader";
+import {NavLink} from "react-router-dom";
 
 // import {setCurrentPageAC} from "../../redux/users-reducer";
 
@@ -33,7 +34,7 @@ function Users(props) {
 
             <span>
                 <div>
-                    <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.photo}/>
+                    <NavLink to={'/profile/' + u.id}><img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.photo}/></NavLink>
                 </div>
                 <div>
                     {u.followed
