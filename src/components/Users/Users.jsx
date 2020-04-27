@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/userPhoto.jpg'
+import preloader from '../../assets/images/preloader.svg'
 
 // import {setCurrentPageAC} from "../../redux/users-reducer";
 
@@ -14,6 +15,11 @@ function Users(props) {
     }
 
     return <div>
+        {props.isFetching
+            ?
+            <div><img src={preloader}/></div>
+            : null
+        }
         <div>
             {pages.map(p => {
                 return <span className={props.currentPage === p && styles.selectedPage}
