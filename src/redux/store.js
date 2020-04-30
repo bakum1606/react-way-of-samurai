@@ -109,5 +109,5 @@ export const updateNewMessageCreator = (text) => {
 }
 
 export default store;
-window.store = store;
+// window.store = store;
 // store - OOP

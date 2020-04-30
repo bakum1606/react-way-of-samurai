@@ -31,7 +31,7 @@ const dialogsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 messages: [...state.messages, newMessage],
-                newPostText: ''
+                newMessageText: ''
 
             }
         case UPDATE_NEW_MESSAGE:
@@ -40,6 +40,9 @@ const dialogsReducer = (state = initialState, action) => {
                 newMessageText : action.send,
 
             }
+
+
+
         default:
             return state;
 
