@@ -3,21 +3,14 @@ import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
 import Header from "./Header";
 import * as axios from "axios";
-import {setAuthUsersData} from "../../redux/auth-reducer";
+import {getAuthorized, setAuthUsersData} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
 import UsersContainer from "../Users/UsersContainer";
-import {usersAPI} from "../../api/api";
+import {authAPI} from "../../api/api";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        usersAPI.authorization().then(data => {
-            if(data.resultCode === 0){
-                let {email, id, login} = data.data;
-                this.props.setAuthUsersData(login, email, id);
-            }
-
-
-        })
+        this.props.getAuthorized();
     }
 
     render() {
@@ -34,4 +27,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setAuthUsersData})(HeaderContainer)
+export default connect(mapStateToProps, {setAuthUsersData, getAuthorized})(HeaderContainer)

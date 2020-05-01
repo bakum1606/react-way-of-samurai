@@ -1,3 +1,6 @@
+import {usersAPI} from "../api/api";
+import applyMiddleware from "redux-thunk";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -86,6 +89,31 @@ export const toggleIsFollowingProgress = (isFetching, userId) => ({
     isFetching,
     userId
 });
+
+export const getUsersThunkCreator = (pageSize, currentPage) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        usersAPI.getUsers(pageSize, currentPage).then(data => {
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+            dispatch(toggleIsFetching(false));
+        });
+    }
+
+}
+export const thunkFollow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userId));
+        usersAPI.unfollowSuccess(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollow(userId))
+                }
+                dispatch(toggleIsFollowingProgress(false, userId));
+            })
+    }
+}
+
 
 
 export default usersReducer;
