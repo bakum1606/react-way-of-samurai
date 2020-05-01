@@ -96,17 +96,7 @@ export const updateNewPostCreator = (text) => {
     }
 }
 
-export const addMessageCreator = () => {
-    return {
-        type: ADD_MESSAGE
-    }
-}
 
-export const updateNewMessageCreator = (text) => {
-    return {
-        type: UPDATE_NEW_MESSAGE, send: text
-    }
-}
 
 export default store;
 // window.store = store;

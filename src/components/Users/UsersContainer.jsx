@@ -8,6 +8,7 @@ import {
 import * as axios from "axios";
 import Users from "./Users";
 import {usersAPI} from "../../api/api";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -46,8 +47,9 @@ let mapStateToProps = (state) => {
     }
 };
 
-
-export default connect(mapStateToProps, {
-    thunkFollow, thunkUnfollow,
-    getUsersThunkCreator
-})(UsersContainer);
+export default compose(
+    connect(mapStateToProps, {
+        thunkFollow, thunkUnfollow,
+        getUsersThunkCreator
+    })
+)(UsersContainer)
