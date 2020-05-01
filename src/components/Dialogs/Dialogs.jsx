@@ -21,7 +21,6 @@ const Dialogs = (props) => {
 
     let dialogsElements = props.dialogs.map( d => <DialogItem name={d.name} id={d.id} />  );
     let messagesElements = props.messages.map( m => <Message message={m.message}/> );
-   if(props.isAuth===false) return   <Redirect to={'/login'}/>
 
     return (
 
