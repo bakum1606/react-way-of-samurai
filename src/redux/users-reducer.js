@@ -113,6 +113,18 @@ export const thunkFollow = (userId) => {
             })
     }
 }
+export const thunkUnfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userId));
+        usersAPI.followSuccess(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(follow(userId))
+                }
+                dispatch(toggleIsFollowingProgress(false, userId));
+            })
+    }
+}
 
 
 

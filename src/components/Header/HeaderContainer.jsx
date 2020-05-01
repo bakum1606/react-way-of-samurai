@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
 import s from './Header.module.css';
-import {NavLink} from "react-router-dom";
 import Header from "./Header";
-import * as axios from "axios";
 import {getAuthorized, setAuthUsersData} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
-import UsersContainer from "../Users/UsersContainer";
-import {authAPI} from "../../api/api";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
@@ -27,4 +23,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setAuthUsersData, getAuthorized})(HeaderContainer)
+export default connect(mapStateToProps, {getAuthorized})(HeaderContainer)

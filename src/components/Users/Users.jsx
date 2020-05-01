@@ -1,13 +1,9 @@
 import React from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/userPhoto.jpg'
-import preloader from '../../assets/images/preloader.svg'
 import Preloader from "../common/preloader/Preloader";
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
-import {usersAPI} from "../../api/api";
 
-// import {setCurrentPageAC} from "../../redux/users-reducer";
 
 
 function Users(props) {
@@ -45,14 +41,7 @@ function Users(props) {
                            props.thunkFollow( u.id)
                         }}>Follow</button>
                         : <button disabled={props.isFollowingProgress.some(id => id === u.id)}onClick={() => {
-                            props.toggleIsFollowingProgress(true, u.id);
-                            usersAPI.followSuccess(u.id)
-                                .then(data => {
-                                    if (data.resultCode === 0) {
-                                        props.follow(u.id)
-                                    }
-                                    props.toggleIsFollowingProgress(false, u.id);
-                                })
+                            props.thunkUnfollow( u.id)
                         }}
 
                         >Unfollow</button>

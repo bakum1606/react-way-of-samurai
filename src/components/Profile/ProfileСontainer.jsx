@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
 import s from './Profile.module.css';
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Profile from "./Profile";
-import * as axios from "axios";
 import {connect} from "react-redux";
 import {getUsersProfile, setUsersProfile} from "../../redux/profile-reducer";
 import {withRouter} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -27,10 +23,11 @@ class ProfileContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth
     }
 }
 
 let withUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, {setUsersProfile, getUsersProfile})(withUrlDataContainerComponent)
+export default connect(mapStateToProps, {getUsersProfile})(withUrlDataContainerComponent)

@@ -1,14 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    follow,
     getUsersThunkCreator,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers, thunkFollow,
-    toggleIsFetching,
-    toggleIsFollowingProgress,
-    unfollow
+    thunkFollow, thunkUnfollow
 
 } from "../../redux/users-reducer";
 import * as axios from "axios";
@@ -30,14 +24,10 @@ class UsersContainer extends React.Component {
                       users={this.props.users}
                       currentPage={this.props.currentPage}
                       isFetching={this.props.isFetching}
-                      thunkFollow={this.props.thunkFollow}
-                      unfollow={this.props.unfollow}
-                      follow={this.props.follow}
-                      setUsers={this.props.setUsers}
                       isFollowingProgress={this.props.isFollowingProgress}
+                      thunkFollow={this.props.thunkFollow}
+                      thunkUnfollow={this.props.thunkUnfollow}
                       changedCurrentPage={this.changedCurrentPage}
-                      setTotalUsersCount={this.props.setTotalUsersCount}
-                      toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
                       getUsersThunkCreator={this.props.getUsersThunkCreator}
         />
     }
@@ -58,6 +48,6 @@ let mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, {
-    thunkFollow, unfollow, follow, setUsers,
-    setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleIsFollowingProgress, getUsersThunkCreator
+    thunkFollow, thunkUnfollow,
+    getUsersThunkCreator
 })(UsersContainer);
