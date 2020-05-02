@@ -1,7 +1,9 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import Preloader from "../../common/preloader/Preloader";
-import user from "../../../assets/images/user.jpg";
+import Preloader from '../../common/preloader/Preloader';
+import user from '../../../assets/images/user.jpg';
+import ProfileStatus from './ProfileStatus';
+
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -28,9 +30,12 @@ const ProfileInfo = (props) => {
                 <p>{props.profile.lookingForAJob}</p>
                 <p>{props.profile.lookingForAJobDescription}</p>
                 <p>{props.profile.fullName}</p>
+                <ProfileStatus status='myStatus'/>
             </div>
+
         </div>
     )
 }
+
 
 export default ProfileInfo;
