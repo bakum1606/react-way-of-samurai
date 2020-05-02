@@ -8,17 +8,17 @@ export default class ProfileStatus extends React.Component {
     }
 
     activateEditMode = () => {
-         this.setState({
-             editMode: true
-         });
+        this.setState({
+            editMode: true
+        });
 
     }
     deactivateEditMode = () => {
-         this.setState({
-             editMode: false
-         });
-         debugger
-         this.props.updateStatus(this.state.status)
+        this.setState({
+            editMode: false
+        });
+
+        this.props.updateStatus(this.state.status)
 
     }
     onStatusChange = (e) => {
@@ -28,6 +28,13 @@ export default class ProfileStatus extends React.Component {
 
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.status !== prevProps.status) {
+            this.setState({
+                status: this.props.status
+            });
+        }
+    }
 
     render() {
         return (
@@ -35,13 +42,14 @@ export default class ProfileStatus extends React.Component {
                 {!this.state.editMode &&
                 <div>
                 <span onDoubleClick={this.activateEditMode}>
-                    {this.props.status}
+                    {this.props.status || '-----'}
                 </span>
                 </div>
                 }
                 {this.state.editMode &&
                 <div>
-                    <input type="text" onChange={this.onStatusChange} autoFocus onBlur={this.deactivateEditMode} value={this.state.status}/>
+                    <input type="text" onChange={this.onStatusChange} autoFocus onBlur={this.deactivateEditMode}
+                           value={this.state.status}/>
                 </div>
                 }
             </div>
