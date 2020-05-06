@@ -7,3 +7,9 @@
     display: block;
     color: red;
 }
+
+.loginError{
+    color: red;
+    border: 1px solid red;
+    padding: 5px;
+}

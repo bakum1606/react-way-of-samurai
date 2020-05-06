@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if(!userId){
-            userId = 6356;
+            userId = this.props.authenticationId;
         }
        this.props.getUsersProfile(userId)
        this.props.getStatus(userId)
@@ -30,6 +30,7 @@ const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
+        authenticationId: state.auth.id
     }
 }
 export default compose(
