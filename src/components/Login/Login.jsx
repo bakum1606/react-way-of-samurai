@@ -1,11 +1,11 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
-import {Input} from "../common/preloader/formControls/FormControls";
+import {Input} from "../common/formControls/FormControls";
 import {required} from "../../Utils/validates";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
-import style from "../../components/common/preloader/formControls/FormControls.module.css";
+import style from "../common/formControls/FormControls.module.css";
 
 
 const LoginForm = (props) => {
