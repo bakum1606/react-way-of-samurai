@@ -20,7 +20,7 @@ const ProfileStatusWithHooks = (props) => {
    useEffect(() => {
        setStatus(props.status)
    }, [props.status]);
-    
+
     return (
         <div>
             {!editMode &&
