@@ -1,7 +1,7 @@
 import React from 'react'
 import {getAuthorized} from "./auth-reducer";
 
-const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
+const INITIALIZED_SUCCESS = 'app/samurai/INITIALIZED_SUCCESS'
 
 let initialState = {
     initialized: false

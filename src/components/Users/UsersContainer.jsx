@@ -5,9 +5,7 @@ import {
     thunkFollow, thunkUnfollow
 
 } from "../../redux/users-reducer";
-import * as axios from "axios";
 import Users from "./Users";
-import {usersAPI} from "../../api/api";
 import {compose} from "redux";
 import {
     getCurrentPage,
@@ -20,10 +18,12 @@ import {
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.pageSize, this.props.currentPage);
+        const {currentPage, pageSize} = this.props;
+        this.props.getUsersThunkCreator(pageSize, currentPage);
     }
     changedCurrentPage = (pageNumber) => {
-        this.props.getUsersThunkCreator(this.props.pageSize, pageNumber);
+        const  {pageSize} = this.props;
+        this.props.getUsersThunkCreator(pageSize, pageNumber);
     }
 
     render() {
@@ -42,17 +42,6 @@ class UsersContainer extends React.Component {
 
 }
 
-// let mapStateToProps = (state) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         usersTotalCount: state.usersPage.usersTotalCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         toggleIsFetching: state.usersPage.toggleIsFetching,
-//         isFollowingProgress: state.usersPage.isFollowingProgress
-//     }
-// };
 
 let mapStateToProps = (state) => {
     return {

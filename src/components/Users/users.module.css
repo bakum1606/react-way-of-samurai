@@ -6,10 +6,4 @@ button{
     width: 75px;
     white-space: nowrap;
 }
-.selectedPage{
-    font-weight: bold;
-}
 
-span{
-    cursor: pointer;
-}
