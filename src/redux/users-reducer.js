@@ -13,9 +13,9 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/samurai/TOGGLE-IS-FOLLOWING-PROGRESS
 
 let initialState = {
     users: [],
-    pageSize: 5,
+    pageSize: 10,
     usersTotalCount: 0,
-    currentPage: 3,
+    currentPage: 1,
     isFetching: false,
     isFollowingProgress: []
 };

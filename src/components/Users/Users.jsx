@@ -14,7 +14,7 @@ function Users({usersTotalCount, pageSize, currentPage, changedCurrentPage, user
             : null
         }
         <div>
-            <Paginator usersTotalCount={usersTotalCount} pageSize={pageSize} currentPage={currentPage} changedCurrentPage={changedCurrentPage}/>
+            <Paginator itemsTotalCount={usersTotalCount} pageSize={pageSize} currentPage={currentPage} changedCurrentPage={changedCurrentPage}/>
 
         </div>
         {
