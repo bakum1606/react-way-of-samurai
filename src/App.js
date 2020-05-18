@@ -1,25 +1,28 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileСontainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import ProfileContainer from "./components/Profile/ProfileСontainer";
 import Login from "./components/Login/Login";
-import React, {Component} from "react";
+import React, {Component, Suspense} from "react";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializedApp} from "./redux/app-reducer";
 import Preloader from "./components/common/preloader/Preloader";
 import store from "./redux/redux-store";
+import {withSuspense} from "./hoc/withSuspense";
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 
 
 class App extends Component {
     componentDidMount() {
         this.props.initializedApp();
     }
+
     render() {
-        if(!this.props.initialized){
+        if (!this.props.initialized) {
             return <Preloader/>
         }
         return (
@@ -28,14 +31,13 @@ class App extends Component {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'
-                           render={() => <DialogsContainer
-
-                           />}/>
-
+        render={withSuspense(DialogsContainer)}  />
                     <Route path='/profile/:userId?'
-                           render={() => <ProfileContainer
 
-                           />}/>
+                           render={() =>
+                                   <ProfileContainer/>
+                           }/>
+
                     <Route path='/users' render={() => <UsersContainer/>}/>
                     <Route path='/login' render={() => <Login/>}/>
                 </div>
@@ -54,10 +56,10 @@ let AppContainer = compose(
 
 const SamuraiJsApp = (props) => {
     return <BrowserRouter>
-    <Provider store={store}>
-        <AppContainer />
+        <Provider store={store}>
+            <AppContainer/>
         </Provider>
-        </BrowserRouter>
+    </BrowserRouter>
 }
 
 export default SamuraiJsApp
