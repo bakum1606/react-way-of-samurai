@@ -2,7 +2,8 @@
   "name": "react-way-of-samurai",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bakum1606.github.io/react-way-of-samurai",
+  "homepage": "./",
+
   "dependencies": {
     "axios": "^0.19.2",
     "classnames": "^2.2.6",

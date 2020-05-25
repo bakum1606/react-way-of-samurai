@@ -8,7 +8,12 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
-        return <Preloader />
+        return <Preloader/>
+    }
+    let changeMainPhoto = (e) => {
+      if(e.target.files.length){
+          props.savePhoto(e.target.files[0])
+      }
     }
 
     return (
@@ -19,6 +24,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.descriptionBlock}>
                 <div><img src={!props.profile.photos.large ? user : props.profile.photos.large}/></div>
+                {props.isOwner && <input type="file" onChange={changeMainPhoto}/>}
                 <p>{props.profile.aboutMe}</p>
                 <p>{props.profile.contacts.facebook}</p>
                 <p>{props.profile.contacts.website}</p>
