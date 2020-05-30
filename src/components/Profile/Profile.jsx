@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {Redirect} from "react-router-dom";
 
 const Profile = (props) => {
     return (
@@ -14,6 +13,9 @@ const Profile = (props) => {
                 status={props.status}
                 updateStatus={props.updateStatus}
                 savePhoto={props.savePhoto}
+                globalError={props.globalError}
+                getErrorMessage={props.getErrorMessage}
+                toLong={props.toLong}
             />
             <MyPostsContainer
                 store={props.store}

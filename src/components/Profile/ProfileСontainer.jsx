@@ -6,11 +6,11 @@ import {
     getUsersProfile,
     savePhoto,
     saveProfile,
-    setUsersProfile,
     updateStatus
 } from "../../redux/profile-reducer";
 import {withRouter} from "react-router-dom";
 import {compose} from "redux";
+import {getErrorMessage} from "../../redux/app-reducer";
 
 class ProfileContainer extends React.Component {
 
@@ -48,6 +48,9 @@ class ProfileContainer extends React.Component {
                      updateStatus={this.props.updateStatus}
                      savePhoto={this.props.savePhoto}
                      saveProfile={this.props.saveProfile}
+                     getErrorMessage={this.props.getErrorMessage}
+                     globalError={this.props.globalError}
+                     toLong={this.props.tooLong}
             />
         )
     }
@@ -58,11 +61,13 @@ const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
-        authenticationId: state.auth.id
+        authenticationId: state.auth.id,
+        globalError: state.app.globalError,
+        tooLong: state.profilePage.tooLong
     }
 }
 export default compose(
-    connect(mapStateToProps, {getUsersProfile, getStatus, updateStatus, savePhoto, saveProfile}),
+    connect(mapStateToProps, {getUsersProfile, getStatus, updateStatus, savePhoto, saveProfile, getErrorMessage, }),
     withRouter
     // withAuthRedirectComponent
 )(ProfileContainer)

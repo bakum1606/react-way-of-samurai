@@ -8,6 +8,7 @@ const ADD_MESSAGE = 'ADD-MESSAGE';
 const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
 
 let store = {
+
     _state: {
         profilePage: {
             posts: [

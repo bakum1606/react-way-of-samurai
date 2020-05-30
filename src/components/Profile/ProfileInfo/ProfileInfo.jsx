@@ -6,7 +6,7 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import ProfileDataFormReduxForm from "./ProfileDataForm";
 
 
-const ProfileInfo = ({profile, status, updateStatus, savePhoto, saveProfile, isOwner}) => {
+const ProfileInfo = ({profile, status, updateStatus, savePhoto, saveProfile, isOwner, globalError, getErrorMessage, toLong}) => {
     let [editMode, setEditMode] = useState(false)
     if (!profile) {
         return <Preloader/>
@@ -36,7 +36,16 @@ const ProfileInfo = ({profile, status, updateStatus, savePhoto, saveProfile, isO
                     <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => {
                         setEditMode(true)
                     }}/>}
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                {globalError &&
+                <div>
+                    <span className={s.errorMessage}>{globalError}</span>
+                </div>}
+                {toLong &&
+                <div>
+                    <span className={s.warning}>To Long Status</span>
+                </div>}
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} globalError={globalError}
+                                        />
             </div>
 
         </div>
@@ -69,3 +78,4 @@ const Contact = ({contactTitle, contactValue}) => {
 
 
 export default ProfileInfo;
+
